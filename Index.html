@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <h1>Filter reviews</h1>
+    <br>
+    <p>Order by rating:</p>
+    <select name="orderR" id="order_rating">
+        <option value="Highest">
+            Highest First
+        </option>
+        <option value="Lowest">
+            Lowest First
+        </option>
+    </select>
+    <p>Minimum rating:</p>
+    <select name="min" id="min_rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    
+    <p>Order by date:</p><br>
+    <select name="orderD" id="order_date">
+        <option value="Oldest">Oldest First</option>
+        <option value="Newest">Newest First</option>
+    </select>
+    <p>Prioritizy by text:</p><br>
+    <select name="priority" id="priority_text">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select><br>
+    <button type="submit" onclick="sendData()">Filter</button>
+<script>
+    function sendData(){
+        var orderRating=document.getElementById("order_rating").value;
+        var minRating=document.getElementById("min_rating").value;
+        var orderDate=document.getElementById("order_date").value;
+        var priorityText=document.getElementById("priority_text").value;
+        var dict_val={orderRating,minRating,orderDate,priorityText}
+        var s=JSON.stringify(dict_val);
+        console.log(s);
+
+
+        var xhttp=new XMLHttpRequest();
+        xhttp.open("POST","new.json",true);
+        xhttp.send();
+        
+        $.ajax({
+            type:"POST",
+            url:"C:\Users\Dell\Desktop\EmbedSocial\new.json",
+            dataType:"json",
+            data:s
+        });
+
+    }
+</script>
+</body>
+</html>
